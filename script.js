@@ -3,11 +3,11 @@ let next = document.getElementById('next');
 let prev = document.getElementById('prev');
 let thumbnails = document.querySelectorAll('.thumbnail .item');
 
-// config param
+// Configurar el panorama
 let countItem = items.length;
 let itemActive = 0;
 
-// event next click
+// click evento next
 next.onclick = function(){
     itemActive = itemActive + 1;
     if(itemActive >= countItem){
@@ -16,7 +16,7 @@ next.onclick = function(){
     showSlider();
 }
 
-//event prev click
+// click evento prev
 prev.onclick = function(){
     itemActive = itemActive - 1;
     if(itemActive < 0){
@@ -31,18 +31,19 @@ let refreshInterval = setInterval(() => {
 }, 5000)
 
 function showSlider(){
-    // remove item active old
+
+    // Eliminar elemento activo antiguo
     let itemActiveOld = document.querySelector('.slider .list .item.active');
     let thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
     itemActiveOld.classList.remove('active');
     thumbnailActiveOld.classList.remove('active');
 
-    // active new item
+    // Activar nuevo elemento
     items[itemActive].classList.add('active');
     thumbnails[itemActive].classList.add('active');
     setPositionThumbnail();
 
-    // clear auto time run slider
+    // Borrar el control deslizante de ejecución automática del tiempo
     clearInterval(refreshInterval);
     refreshInterval = setInterval(() => {
         next.click();
@@ -57,7 +58,7 @@ function setPositionThumbnail () {
     }
 }
 
-// click thumbnail
+// Evento clic en la miniatura
 thumbnails.forEach((thumbnail, index) => {
     thumbnail.addEventListener('click', () => {
         itemActive = index;
